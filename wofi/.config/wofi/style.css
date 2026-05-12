@@ -1,0 +1,59 @@
+window {
+    font-size: 16px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    background-color: rgba(20, 20, 25, 0.92);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #f0f0f0;
+}
+
+#input {
+    background-color: rgba(30, 30, 36, 0.8);
+    color: #ffffff;
+    padding: 12px 16px;
+    margin: 16px;
+    border-radius: 12px;
+    border: none;
+    font-size: 14px;
+}
+
+#input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(100, 150, 255, 0.5);
+}
+
+#entry {
+    padding: 8px 16px;
+    margin: 0 8px;
+    border-radius: 10px;
+}
+
+#entry:selected {
+    background-color: rgba(80, 100, 140, 0.6);
+}
+
+/* Make the internal box use all available width */
+#entry > box {
+    width: 100%;
+}
+
+/* Push the label to the far right */
+#entry label {
+    margin-left: auto;
+}
+
+/* Ensure icons have some spacing on the right */
+#entry image {
+    margin-right: 12px;
+}
+
+/* Optional: hide scrollbar */
+scrollbar {
+    background: transparent;
+    width: 6px;
+}
+
+scrollbar slider {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}

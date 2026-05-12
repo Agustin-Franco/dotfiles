@@ -1,0 +1,25 @@
+# VSCodium caches and state
+vscodium/.config/VSCodium/Cache/
+vscodium/.config/VSCodium/CachedProfilesData/
+vscodium/.config/VSCodium/Code Cache/
+vscodium/.config/VSCodium/Dawn*Cache/
+vscodium/.config/VSCodium/Service Worker/
+vscodium/.config/VSCodium/User/workspaceStorage/
+vscodium/.config/VSCodium/User/globalStorage/
+vscodium/.config/VSCodium/User/History/
+vscodium/.config/VSCodium/Workspaces/
+vscodium/.config/VSCodium/Network Persistent State
+vscodium/.config/VSCodium/Cookies*
+vscodium/.config/VSCodium/SharedStorage
+vscodium/.config/VSCodium/TransportSecurity
+vscodium/.config/VSCodium/machineid
+vscodium/.config/VSCodium/Preferences
+vscodium/.config/VSCodium/Local Storage/
+vscodium/.config/VSCodium/Session Storage/
+vscodium/.config/VSCodium/Crashpad/
+vscodium/.config/VSCodium/GPUCache/
+vscodium/.config/VSCodium/logs/
+vscodium/.config/VSCodium/*Cache/
+
+# OpenCode runtime deps
+opencode/.config/opencode/node_modules/

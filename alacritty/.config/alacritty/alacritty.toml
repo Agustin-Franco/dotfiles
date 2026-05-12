@@ -1,0 +1,96 @@
+# ============================================================
+#  Environment
+# ============================================================
+
+[env]
+TERM = "xterm-256color"
+
+# ============================================================
+#  Window Configuration
+# ============================================================
+
+[window]
+  # Padding (inner margins)
+  padding = { x = 10, y = 10 }
+
+  # Remove title bar for a cleaner look
+  decorations = "Buttonless"
+
+  # Opacity and blur (if supported by your compositor)
+  opacity = 0.85
+  blur = true
+
+  # Start maximized for full-screen focus (optional)
+  # start_maximized = true
+
+  # Option to use Alt as Meta key
+  option_as_alt = "Both"
+
+  # 1. Performance: Dynamic padding keeps content centered on resize
+  dynamic_padding = true
+
+  # 2. Performance: Use GPU-accelerated rendering (default on most platforms)
+  #    Not explicitly needed but good to know it's the default
+
+# ============================================================
+#  Font Configuration
+# ============================================================
+
+[font]
+  normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+  bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+  italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+  bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+
+  size = 12
+
+  # 4. Optional: Built-in font features (if supported by your font)
+  #    For JetBrains Mono, this enables stylistic sets like ligatures
+  #    Uncomment if you want to customize:
+  # [font.builtin_box_drawing]
+  #   # Use Alacritty's built-in box drawing chars for better performance
+  #   enabled = true
+
+# ============================================================
+#  Colors 
+# ============================================================
+
+[colors.bright]
+black = "#444b6a"
+blue = "#7da6ff"
+cyan = "#0db9d7"
+green = "#b9f27c"
+magenta = "#bb9af7"
+red = "#ff7a93"
+white = "#acb0d0"
+yellow = "#ff9e64"
+
+[colors.normal]
+black = "#32344a"
+blue = "#7aa2f7"
+cyan = "#449dab"
+green = "#9ece6a"
+magenta = "#ad8ee6"
+red = "#f7768e"
+white = "#787c99"
+yellow = "#e0af68"
+
+
+
+# ============================================================
+#  Cursor
+# ============================================================
+
+[cursor]
+  style = { shape = "Beam", blinking = "On" }
+  vi_mode_style = { shape = "Block", blinking = "Off" }
+  blink_interval = 500
+  blink_timeout = 5
+  unfocused_hollow = true
+
+# ============================================================
+#  Performance & Scrolling
+# ============================================================
+
+[scrolling]
+  history = 10000  # 7. Increase scrollback buffer to 10k lines

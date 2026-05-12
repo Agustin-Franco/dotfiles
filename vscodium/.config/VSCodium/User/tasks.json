@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${workspaceFolder}/${fileBasenameNoExtension}"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Execute",
+            "type": "shell",
+            "command": "g++ -g '${file}' -o '${workspaceFolder}/${fileBasenameNoExtension}' && '${workspaceFolder}/${fileBasenameNoExtension}'",
+            "presentation": {
+                "echo": false,
+                "reveal": "always",
+                "panel": "shared",
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
