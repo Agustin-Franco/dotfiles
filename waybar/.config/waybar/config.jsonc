@@ -1,32 +1,29 @@
 {
   "layer": "top",
-  "position": "top",
-  "height": 26,
-
-  "modules-left": ["hyprland/workspaces", "custom/spotify"],
+  "modules-left": ["hyprland/workspaces", "group/media"],
   "modules-center": ["clock"],
   "modules-right": [
-    "wireplumber",
-    "pulseaudio/slider",
+    "hyprland/submap",
+    "group/volume",
     "network",
     "bluetooth",
     "battery",
     "cpu",
-    "memory"
+    "memory",
   ],
 
-"hyprland/workspaces": {
+  "hyprland/workspaces": {
     "format": "{icon}",
     "format-icons": {
       "urgent": "",
-      "active": "", // focused workspace on current monitor 
+      "active": "", // focused workspace on current monitor
       "visible": "", // focused workspace on other monitors
       "default": "",
-      "empty": "" // persistent (created by this plugin)
+      "empty": "", // persistent (created by this plugin)
     },
     "on-scroll-up": "hyprctl dispatch split-cycleworkspaces +1",
     "on-scroll-down": "hyprctl dispatch split-cycleworkspaces -1",
-    "all-outputs": false // recommended
+    "all-outputs": false, // recommended
   },
 
   "clock": {
@@ -43,53 +40,63 @@
         "days": "<span color='#ecc6d9'><b>{}</b></span>",
         "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
         "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-      }
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
     },
     "actions": {
       "on-click-right": "mode",
       "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
-    }
+      "on-scroll-down": "shift_down",
+    },
   },
-  "custom/spotify": {
-    "exec": "~/.config/waybar/scripts/spotify-marquee.sh",
-    "interval": 1,
-    "return-type": "json",
+  "group/media": {
+    "orientation": "horizontal",
+    "modules": ["custom/media-now-playing", "custom/media-time"],
+  },
+  "custom/media-now-playing": {
+    "exec": "~/.config/waybar/scripts/media-now-playing.sh",
     "escape": false,
+    "tooltip": false,
     "on-click": "playerctl -p spotify play-pause",
-    "tooltip": true,
-    "env": {
-      "WAYBAR_SPOTIFY_WIDTH": "28",
-      "WAYBAR_SPOTIFY_SCROLL_STEP": "2"
-    }
+    "on-click-middle": "playerctl -p spotify previous",
+    "on-click-right": "playerctl -p spotify next",
+  },
+  "custom/media-time": {
+    "exec": "~/.config/waybar/scripts/media-time.sh",
+    "escape": false,
+    "interval": 1,
+    "tooltip": false,
+    "on-click": "playerctl -p spotify play-pause",
   },
 
-  "wireplumber": {
+  "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "󰝟 Muted",
-    "format-icons": ["", "", ""],
-    "on-click": "alacritty -e bash -lc 'wiremix; exec bash'",
-    "scroll-step": 2,
-    "tooltip": false
+    "format-icons": {
+      "default": ["", ""],
+    },
+    "scroll-step": 1,
+    "on-click": "pavucontrol",
+    "tooltip": false,
   },
-
   "pulseaudio/slider": {
     "min": 0,
     "max": 100,
-    "orientation": "horizontal"
+    "orientation": "horizontal",
+  },
+  "group/volume": {
+    "orientation": "horizontal",
+    "modules": ["pulseaudio", "pulseaudio/slider"],
   },
 
- "bluetooth": {
-    "format": "󰂲",
-    "format-connected": "",
-    "format-disabled": "󰂲",
-    "on-click": "alacritty -e bash -lc 'bluetui; exec bash'",
-    "tooltip": true,
-    "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "",
+    "format-connected": " {num_connections}",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+    "on-click": "alacritty -e bluetui",
   },
 
   "battery": {
@@ -102,8 +109,8 @@
     "format-full": "󰂅 100%",
     "format-icons": {
       "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-      "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
-    }
+      "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"],
+    },
   },
 
   "network": {
@@ -112,24 +119,22 @@
     "format-disconnected": "󰖪 offline",
     "tooltip-format-wifi": "{essid} ({signalStrength}%)\n⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}",
     "tooltip-format-ethernet": "Wired\n⇣{bandwidthDownBytes} ⇡{bandwidthUpBytes}",
-    "on-click": "alacritty -e bash -lc 'impala; exec bash'",
-    "tooltip": true
+    "on-click": "alacritty -e impala",
+    "tooltip": true,
   },
 
   "cpu": {
     "format": " {usage:>2}%",
-    "max-length": 8,
     "interval": 2,
-    "on-click": "alacritty -e bash -lc 'btop; exec bash'",
-    "tooltip": true
+    "on-click": "alacritty -e btop",
+    "tooltip": true,
   },
 
   "memory": {
     "format": " {percentage:>2}%",
-    "max-length": 8,
     "interval": 2,
-    "on-click": "alacritty --class=floating-term -e htop",
+    "on-click": "alacritty -e htop",
     "tooltip": true,
-    "tooltip-format": "{used:0.1f} GB / {total:0.1f} GB"
-  }
+    "tooltip-format": "{used:0.1f} GB / {total:0.1f} GB",
+  },
 }
